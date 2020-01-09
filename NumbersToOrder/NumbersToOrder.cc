@@ -6,6 +6,39 @@
   Takes a series of input of numbers −32768 ≤ k ≤ 32767 and sorts the numbers.
   It also checks to see if there are any repeats and prints either "REPEATS" or "NO REPEATS".
 
+
+
+  To run this program ... *add how to run here
+
+  Example:
+
+    Input:
+          10
+          20
+          15
+          30
+          15
+          25
+    Output:
+          10
+          15
+          20
+          25
+          30
+          REPEATS
+
+
+
+
+  In this process we chose to be the most effecient possible while sacrificing a given amount of space. 
+  Every NumbersToOrder object contains a large array that takes up space.
+  This array was made in order for the sorting algorithm to be hashing.
+  Given n integers that means that to sort the entire list at worst
+  the sorting algorithsm would take a time of O(n)
+
+
+
+
   
  */
 
@@ -24,8 +57,8 @@
         Sets all attributes to their default values.
         Sets all of the values of the array, table, to INT_MIN to allow for checking if
           another value already takes the place of that index while the numbers are being inserted.
-    */
-NumbersToOrder::NumbersToOrder()
+      */
+    NumbersToOrder::NumbersToOrder()
     {
         repeat = false;
         first = 65535;
@@ -43,7 +76,7 @@ NumbersToOrder::NumbersToOrder()
       Side Effects:
         Prints to the console.
     */
-void NumbersToOrder::printNumbers()
+    void NumbersToOrder::printNumbers()
     {
         // Checks to make sure something has been inputted
         if(first <= last)
@@ -84,7 +117,7 @@ void NumbersToOrder::printNumbers()
         Modify the attribute table by filling in the user's inputs.
         Modify repeat if a collision is detected while hashing the list of inputs
     */
-void NumbersToOrder::numToOrder(std::list<int> listOfInputs)
+    void NumbersToOrder::numToOrder(std::list<int> listOfInputs)
     {
         // While we have inputs to work with
         while(! listOfInputs.empty())
@@ -126,7 +159,7 @@ void NumbersToOrder::numToOrder(std::list<int> listOfInputs)
       Side Effects:
         NONE
     */
-void NumbersToOrder::run()
+    void NumbersToOrder::run()
     {
         // Init variables to get the inputs
         bool error = false;
