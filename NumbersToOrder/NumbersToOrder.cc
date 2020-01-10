@@ -8,7 +8,9 @@
 
 
 
-  To run this program ... *add how to run here
+  To run this program go to console and type "make" press enter and then "./numbers" and press enter
+  Failure to type in the correct input will result in an Error message being outputed
+  Note that in order to do this the makefile, header, and .cc file must all be in the same directory
 
   Example:
 
@@ -27,7 +29,7 @@
           30
           REPEATS
 
-
+  Test cases are stored in the folders called "tests"
 
 
   In this process we chose to be the most effecient possible while sacrificing a given amount of space. 
