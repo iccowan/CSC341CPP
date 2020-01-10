@@ -1,7 +1,7 @@
 # Ian Cowan
 # Jack Pharies
 # CSC 341 W20
-# Makefile for C++ RPNCalculator makefile
+# Makefile for C++ RPNCalculator
 
 PROGRAM=calc
 CLASSES=
