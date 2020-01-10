@@ -1,7 +1,7 @@
 # Ian Cowan
 # Jack Pharies
 # CSC 341 W20
-# Makefile for C++ Numbers To Order makefile
+# Makefile for C++ Numbers To Order
 
 PROGRAM=numbers
 CLASSES=
