@@ -222,6 +222,12 @@ void RPNCalculator::checkInteger(std::string input)
         start = 1;
     }
 
+    if(input == "")
+    {
+        error();
+        return;
+    }
+
     for(int i = start; i < (int) input.length(); i++)
     {
         if(! std::isdigit(input[i]))
