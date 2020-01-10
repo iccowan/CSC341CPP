@@ -43,8 +43,13 @@
   a given amount of space. 
   Every NumbersToOrder object contains a large array that takes up space.
   This array was made in order for the sorting algorithm to be hashing.
-  Given n integers that means that to sort the entire list at worst
+  Given n inputs that means that to sort the entire list at worst
   the sorting algorithsm would take a time of O(n)
+  When we output the file the worst case is we have to iterate through all 65,535 points
+  which makes the worst case O(n + 65,535)
+
+  This means that the program become more efficient at the size of n increases,
+  and that a small n is most likely to be less efficient. 
 
 
  */
