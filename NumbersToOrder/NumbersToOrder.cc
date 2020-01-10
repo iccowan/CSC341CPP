@@ -7,7 +7,6 @@
   It also checks to see if there are any repeats and prints either "REPEATS" or "NO REPEATS".
 
 
-
   To run this program go to console and type "make" press enter and then "./numbers" and press enter
   Failure to type in the correct input will result in an Error message being outputed
   Note that in order to do this the makefile, header, and .cc file must all be in the same directory
@@ -29,19 +28,25 @@
           30
           REPEATS
 
+  
   Test cases are stored in the folders called "tests"
+  Each test has a text file named test#_in, test#_out, and test#_sol
+  # refers to the number of the test
+  test_in is the input we are testing
+  test_out is the output that the program gives
+  test_sol is our predicted output that is compared against test_out
+  Tests were preformed by running the command:
+  "cat test_in.txt | ./numbers >test_out.txt" then "diff test_out.txt test_sol.txt"
 
 
-  In this process we chose to be the most effecient possible while sacrificing a given amount of space. 
+  In this process we chose to be the most effecient possible while sacrificing 
+  a given amount of space. 
   Every NumbersToOrder object contains a large array that takes up space.
   This array was made in order for the sorting algorithm to be hashing.
   Given n integers that means that to sort the entire list at worst
   the sorting algorithsm would take a time of O(n)
 
 
-
-
-  
  */
 
 #include "NumbersToOrder.hh"
