@@ -1,53 +1,53 @@
-e
-3e3
-3.0
+e        - Test for ERROR on invalid input
+3e3      - Test for ERROR on invalid input
+3.0      - Test for ERROR on invalid input
 2
 2
 +
-=
+=        - Test for correct addition
 2
 2
 -
-=
+=        - Test for correct subtraction
 2
 3
 *
-=
+=        - Test for correct multiplication
 6
 3
 /
-=
+=        - Test for correct division (positive integers)
 -6
 -3
 /
-=
+=        - Test for correct division (negative integers)
 10
 -4
 /
-=
+=        - Test for correct division (a negative and a positive integer)
 3
-d
+d        
 +
-=
+=        - Test for correct duplication
 3
 5
 s
 -
-=
+=        - Test for correct swapping
 2
-+
++        - Test for invalid number of integers for addition
 2
--
+-        - Test for invalid number of integers for subtraction
 2
-*
+*        - Test for invalid number of integers for multiplication
 2
-/
+/        - Test for invalid number of integers for division
 2
-s
-d
+s        - Test for invalid number of integers for swapping
+d        - Test for invalid number of integers for duplication
 2
 0
-/
+/        - Test for invalid 0 division
 10
 -4
 /
@@ -58,4 +58,5 @@ d
 6
 s
 -
-=
+=        - Test for use of all operators within a single calculation
+   
