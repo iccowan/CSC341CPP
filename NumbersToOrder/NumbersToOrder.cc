@@ -29,7 +29,7 @@
           REPEATS
 
   
-  Test cases are stored in the folders called "tests"
+  Test cases are stored in the folder called "tests"
   Each test has a text file named test#_in, test#_out, and test#_sol
   # refers to the number of the test
   test_in is the input we are testing
