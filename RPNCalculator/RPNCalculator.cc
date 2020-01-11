@@ -97,12 +97,14 @@ void RPNCalculator::error()
 */
 void RPNCalculator::add()
 {
+    // Make sure we have enough numbers on the stack to add
     if(stack.size() < 2)
     {
         error();
         return;
     }
 
+    // Add
     int num1 = stack.front();
     stack.pop_front();
     int num2 = stack.front();
@@ -129,12 +131,14 @@ void RPNCalculator::add()
 */
 void RPNCalculator::subtract()
 {
+    // Make sure we have enough numbers on the stack to subtract
     if(stack.size() < 2)
     {
         error();
         return;
     }
 
+    // Subtract
     int num1 = stack.front();
     stack.pop_front();
     int num2 = stack.front();
@@ -161,12 +165,14 @@ void RPNCalculator::subtract()
 */
 void RPNCalculator::multiply()
 {
+    // Make sure we have enough numbers on the stack to multiply
     if(stack.size() < 2)
     {
         error();
         return;
     }
 
+    // Multiply
     int num1 = stack.front();
     stack.pop_front();
     int num2 = stack.front();
@@ -193,12 +199,15 @@ void RPNCalculator::multiply()
 */
 void RPNCalculator::divide()
 {
+    // Make sure we have enough numbers on the stack to divide
     if(stack.size() < 2)
     {
         error();
         return;
     }
 
+    // Get the integers and convert to floats
+    // so we can control the rounding
     float num1 = (float) stack.front();
     stack.pop_front();
     float num2 = (float)stack.front();
@@ -211,6 +220,7 @@ void RPNCalculator::divide()
         return;
     }
 
+    // Divide and take the floor function, which returns an integer
     int result = floor(num2 / num1);
 
     stack.push_front(result);
@@ -233,12 +243,14 @@ void RPNCalculator::divide()
 */
 void RPNCalculator::swap()
 {
+    // Make sure we have enough numbers to swap
     if(stack.size() < 2)
     {
         error();
         return;
     }
 
+    // Now, swap them
     int num1 = stack.front();
     stack.pop_front();
     int num2 = stack.front();
@@ -266,6 +278,7 @@ void RPNCalculator::swap()
 */
 void RPNCalculator::dupe()
 {
+    // Make sure something is on the stack
     if(stack.size() < 1)
     {
         error();
@@ -287,16 +300,19 @@ void RPNCalculator::dupe()
    	The last number on the stack
   Side Effects:
     Clears the stack of the last number, making the stack empty.
+    Prints the result to the standard out
 
 */
 void RPNCalculator::calculate()
 {
+    // Make sure only one number is on the stack
     if(stack.size() != 1)
     {
         error();
         return;
     }
 
+    // Print the result
     std::cout << stack.front() << std::endl;
     stack.clear();
 }
@@ -356,6 +372,7 @@ bool RPNCalculator::checkSymbol(std::string input)
             return true;
         }
 
+        // The input was not a symbol
         return false;
 }
 
@@ -375,18 +392,21 @@ bool RPNCalculator::checkSymbol(std::string input)
 */
 void RPNCalculator::checkInteger(std::string input)
 {
+    // Check for a negative
     int start = 0;
     if(input[0] == '-')
     {
         start = 1;
     }
 
+    // Check for empty input
     if(input == "")
     {
         error();
         return;
     }
 
+    // Make sure the entire thing is an integer
     for(int i = start; i < (int) input.length(); i++)
     {
         if(! std::isdigit(input[i]))
@@ -396,6 +416,8 @@ void RPNCalculator::checkInteger(std::string input)
         }
     }
 
+    // If this was successful, we have an integer
+    // Convert from string to int and push to the stack
     stack.push_front(std::stoi(input));
 }
 
@@ -414,9 +436,11 @@ void RPNCalculator::checkInteger(std::string input)
 */
 void RPNCalculator::run()
 {
+    // Get the input
     std::string input;
     std::getline(std::cin, input);
 
+    // Run while we are not at EOF
     while(! std::cin.eof())
     {
         if(! checkSymbol(input))
