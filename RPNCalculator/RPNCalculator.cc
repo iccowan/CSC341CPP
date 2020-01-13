@@ -450,6 +450,12 @@ void RPNCalculator::run()
 
         std::getline(std::cin, input);
     }
+
+    // Once EOF is encountered, make sure the stack is empty
+    if(! stack.empty())
+    {
+        error();
+    }
 }
 
 
