@@ -17,8 +17,8 @@ public:
     Waldo() {} // basic constructor
     // methods
     void run();
-    void insertIntoGraph(std::string);
-    std::list<std::string> splitString(std::list<std::string>, std::string, char);
+    void insertIntoGraph(std::string); // inserts input into graph
+    std::list<std::string> splitString(std::list<std::string>, std::string, char); // splits the string based on " "
 };
 
 #endif

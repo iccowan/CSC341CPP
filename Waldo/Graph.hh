@@ -17,14 +17,14 @@ class Graph
     // methods
 public:
     Graph() {}
-    void addPackage(std::string);
-    void addPackageDepend(std::string, std::string);
-    bool isPackageInGraph(std::string);
-    void getInstallOrder();
+    void addPackage(std::string); // adds a graphnode
+    void addPackageDepend(std::string, std::string); // adds a dependency
+    bool isPackageInGraph(std::string); // checks if a package exists
+    void getInstallOrder(); // starts the recursion
 private:
-    void install(std::string);
-    void printInstallOrder();
-    void error();
+    void install(std::string); // recursion to find an install order
+    void printInstallOrder(); // prints the install order
+    void error(); // prints error message
     //void printPackagesAndDepends();
 };
 

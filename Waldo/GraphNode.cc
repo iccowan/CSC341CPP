@@ -1,3 +1,20 @@
+/*
+  Name: Ian Cowan
+  Lab Partner: Jack Pharies
+  CSC 341 W20
+  P1 Install Waldo :: Graphnode
+  The Node object used to store the preintsalations,
+  the state of the package,
+  and the name of the package.
+
+  Getters and setters for each of the attributes are present.
+  Used by graph to store the data of the packages.
+  
+
+ */
+
+
+
 #include "GraphNode.hh"
 
 // class GraphNode:

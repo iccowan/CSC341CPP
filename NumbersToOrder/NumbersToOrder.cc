@@ -20,6 +20,7 @@
           30
           15
           25
+          Press Control-D
     Output:
           10
           15

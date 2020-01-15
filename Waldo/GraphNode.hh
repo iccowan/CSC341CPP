@@ -13,9 +13,9 @@ public:
 
     // methods
 public:
+    // getters and setters
     GraphNode(std::string);
     void setState(int);
-    void install(); // Puts this
     int getState();
     std::string getPackageName();
     std::list<std::string> getDepends();
