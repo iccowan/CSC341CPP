@@ -16,9 +16,9 @@ class Waldo
 public:
     Waldo() {} // basic constructor
     // methods
-    void run();
+    void run(); // runs the program
     void insertIntoGraph(std::string); // inserts input into graph
-    std::list<std::string> splitString(std::list<std::string>, std::string, char); // splits the string based on " "
+    std::list<std::string> splitString(std::list<std::string>, std::string, char); // splits the string based on inputted delimeter
 };
 
 #endif

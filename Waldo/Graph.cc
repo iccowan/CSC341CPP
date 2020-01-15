@@ -13,7 +13,7 @@
   packages that allow for waldo to be installed. At the same time switches inbetween states 
   (not installed, installing, installed) to create an order to the packages
 
-  Graphnode.cc holds the name, dependencies, and state of the package
+  GraphNode.cc holds the name, dependencies, and state of the package
 
   Will print "ERROR" if there a dependency that is called that is not in the graph object
   or if the recurssion goes to a graphnode that has a state "installing" 
@@ -32,6 +32,7 @@
 
 /*
  Creates a new node with the package name and adds it to adjTable
+ If the package already exists in the graph, do nothing
 
   Inputs:
     String packageName
@@ -42,14 +43,13 @@
 */
 void Graph::addPackage(std::string packageName)
 {
+    // Make sure the package exists
     if(adjTable.count(packageName) == 0)
     {
         GraphNode newNode = GraphNode(packageName);
         adjTable.insert( {packageName, newNode} );
     }
 }
-
-
 
 /*
   Takes in a dependency and puts the dependency into the list of dependencies 
@@ -60,10 +60,11 @@ void Graph::addPackage(std::string packageName)
   Outputs:
     NONE
   Side Effects:
-    Adds package dependencies to the package based on the packageName.
+    Adds package dependencies to the package in the graph based on the packageName.
 */
 void Graph::addPackageDepend(std::string packageName, std::string dependName)
 {
+    // Make sure the graph node exists
     if(adjTable.count(packageName) > 0)
     {
         GraphNode node = adjTable.find(packageName)->second;
@@ -71,7 +72,6 @@ void Graph::addPackageDepend(std::string packageName, std::string dependName)
         adjTable.find(packageName)->second = node;
     }
 }
-
 
 /*
  Takes a package name and checks to see if that package exists in the 
@@ -111,20 +111,25 @@ bool Graph::isPackageInGraph(std::string packageName)
 */
 void Graph::getInstallOrder()
 {
+    // No waldo!
     if(adjTable.count("waldo") == 0)
     {
         error();
         isError = false;
         return;
     }
-
+    
+    // Begin the recursion at waldo
     install("waldo");
     if(! isError)
     {
+        // Only print if there never was an error
         printInstallOrder();
     }
     else
     {
+        // If we encounter an error at any point, let's
+        // print this out
         error();
     }
 }
@@ -162,12 +167,14 @@ void Graph::install(std::string currentPackage)
     //  2 - Dependency already installed
     //  0 - Begin installation of current package & recurse through children if applicable
 
+    // No need to deal with this if we have an error, so let's get
+    // out of the recursion as quickly as possible
     if(isError)
     {
         return;
     }
 
-    // loop - Error
+    // The package does not exist in the graph
     if(adjTable.count(currentPackage) == 0)
     {
         isError = true;
@@ -179,6 +186,7 @@ void Graph::install(std::string currentPackage)
 
     if(currentNode.getState() == 1)
     {
+        // We have a cycle and thus have an error and we cannot install waldo
         isError = true;
         return;
     }
@@ -199,6 +207,7 @@ void Graph::install(std::string currentPackage)
             install(dependencies.front());
             dependencies.pop_front();
 
+            // If we run into an error, no need to continue
             if(isError)
             {
                 return;
@@ -206,8 +215,9 @@ void Graph::install(std::string currentPackage)
         }
     }
 
+    // Put this package on the list for install order
     installOrder.push_front(currentPackage);
-    currentNode.setState(2);
+    currentNode.setState(2); // finished installing
     adjTable.find(currentPackage)->second = currentNode;
     return;
 }
@@ -223,9 +233,12 @@ void Graph::install(std::string currentPackage)
     NONE
   Side Effects:
     installOrder loses its contents.
+    Packages are printed to the console
 */
 void Graph::printInstallOrder()
 {
+    // Loop through the list and print the packages in install order
+    // Because of how things got inserted, we begin at the back
     unsigned int installOrderSize = installOrder.size();
     for(unsigned int i = 0; i < installOrderSize; i++)
     {
@@ -243,24 +256,9 @@ void Graph::printInstallOrder()
   Outputs:
     NONE
   Side Effects:
-    NONE
+    Prints "ERROR" to the console
 */
 void Graph::error()
 {
     std::cout << "ERROR" << std::endl;
 }
-
-/*
-void Graph::printPackagesAndDepends()
-{
-    for(std::unordered_map<std::string, std::list<GraphNode> >::iterator it = adjTable.begin(); it != adjTable.end(); ++it) {
-        std::cout << it->first << " - ";
-        for (GraphNode i : it->second) {
-            std::cout << i.getPackageName() << ", ";
-        }
-        std::cout << std::endl;
-    }
-
-
-}
- */

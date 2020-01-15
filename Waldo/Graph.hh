@@ -25,7 +25,6 @@ private:
     void install(std::string); // recursion to find an install order
     void printInstallOrder(); // prints the install order
     void error(); // prints error message
-    //void printPackagesAndDepends();
 };
 
 #endif

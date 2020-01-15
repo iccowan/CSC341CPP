@@ -4,7 +4,7 @@
   CSC 341 W20
   P1 Waldo : waldo.cc
   Takes inputs of packages and their dependencies and creates and order of which the
-  packages are installed.
+  packages should be installed.
 
   Waldo.cc takes inputs and seperates the inputs into the package and its
   dependencies and puts them into the graph object
@@ -15,7 +15,8 @@
 
   Graphnode.cc holds the name, dependencies, and state of the package
 
-  Will print "ERROR" if the input does not include a package named "waldo"
+  Will print "ERROR" if the input does not include a package named "waldo" and if the package
+  "waldo" cannot be installed
 
   Valid inputs:
   Any string of inputs. The first name is the package name followed by its dependencies.
@@ -42,15 +43,13 @@
 
 
   After the input is finished, the graphs "install" method is called and 
-  the graph object handles the rest of thr work.
+  the graph object handles the rest of the work.
 
   Test cases are stored in the folder called "tests"
-  The test has a text file named test_in, test_out, and test_sol
+  Each test has a text file named test_in, test_out, and test_sol
   test_in is the input we are testing
   test_out is the output that the program gives
   test_sol is our predicted output that is compared against test_out
-  Due to the program not stopping at the "=", we ran all test from a single .txt file
-  The file test_explain has the test case and a description of every test that is run
   Tests were preformed by running the command:
   "cat test_in.txt | ./waldo >test_out.txt" then "diff test_out.txt test_sol.txt"
 
@@ -98,7 +97,7 @@ void Waldo::run()
 
 
 /*
- Takes an input and calls splitString() to splice the string on " ".
+ Takes an input and calls splitString() to splice the string between each " ".
  Then calls graphs addPackage to create a new graphnode with the package name 
  and al the dependencies.
 
@@ -113,7 +112,6 @@ void Waldo::run()
 void Waldo::insertIntoGraph(std::string input)
 {
     std::list<std::string> output;
-
 
     std::list<std::string> packagesAndDepends = splitString(output, input, ' ');
 
@@ -140,7 +138,7 @@ void Waldo::insertIntoGraph(std::string input)
   Outputs:
     output - a list of strings formed from input
   Side Effects:
-    Takes the input and splits the string on the character " ".
+    NONE
 
 */
 std::list<std::string> Waldo::splitString(std::list<std::string> output, std::string input, char delimiter)
@@ -152,11 +150,14 @@ std::list<std::string> Waldo::splitString(std::list<std::string> output, std::st
     {
         if(input[i] == delimiter)
         {
+            // Once we hit our delimeter, let's add to the list
+            // and set the string back to the empty string
             output.push_back(nextString);
             nextString = "";
         }
         else
         {
+            // If we aren't at our delimeter, add the character to the string
             nextString = nextString + input[i];
         }
     }

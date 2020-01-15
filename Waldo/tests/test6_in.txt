@@ -1,0 +1,6 @@
+waldo a b
+a c d
+b c
+c e
+d
+e

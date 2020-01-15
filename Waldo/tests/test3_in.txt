@@ -1,0 +1,4 @@
+waldo a
+a b c
+c a
+b
